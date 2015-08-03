@@ -1,6 +1,6 @@
 default['asterisk']['source']['packages'] = case platform_family
 when 'debian'
-  %w{libssl-dev libcurl4-openssl-dev libncurses5-dev libnewt-dev libxml2-dev libsqlite3-dev libsrtp0-dev uuid-dev sox}
+  %w{libssl-dev libcurl4-openssl-dev libjansson-dev libncurses5-dev libnewt-dev libxml2-dev libsqlite3-dev libsrtp0-dev uuid-dev sox}
 when 'rhel'
   %w{openssl-devel ncurses-devel newt-devel libxml2-devel sqlite-devel uuid-devel sox}
 end
