@@ -42,14 +42,26 @@ ruby_block 'validate asterisk tarball' do
   only_if { chksum }
 end
 
-bash "install_asterisk" do
+bash "install_asterisk p1" do
   user "root"
   cwd File.dirname(source_path)
   code <<-EOH
     tar zxf #{source_path}
     cd #{'certified-' if certified}asterisk-#{version =~ /(\d*)-current/ ? "#{$1}.*" : version}
     ./contrib/scripts/install_prereq install
-    PKG_CONFIG_PATH=#{pkg_config_path} ./configure --prefix=#{node['asterisk']['prefix']['bin']} --sysconfdir=#{node['asterisk']['prefix']['conf']} --localstatedir=#{node['asterisk']['prefix']['state']}
+  EOH
+  not_if "test -f #{node['asterisk']['prefix']['bin']}/sbin/asterisk"
+end
+
+execute 'configure with pkg-config' do
+    command "su root -l -c 'PKG_CONFIG_PATH=#{pkg_config_path} ./configure --prefix=#{node['asterisk']['prefix']['bin']} --sysconfdir=#{node['asterisk']['prefix']['conf']} --localstatedir=#{node['asterisk']['prefix']['state']}'"
+    not_if "test -f #{node['asterisk']['prefix']['bin']}/sbin/asterisk"
+end
+
+bash "install_asterisk p2" do
+  user "root"
+  cwd File.dirname(source_path)
+  code <<-EOH
     make
     make install
     make config
