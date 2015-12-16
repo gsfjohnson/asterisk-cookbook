@@ -8,6 +8,7 @@ node['asterisk']['source']['packages'].each do |pkg|
   end
 end
 
+pkg_config_path = "/usr/lib/pkgconfig"
 version = node['asterisk']['source']['version']
 certified = true if version.match(/cert/)
 chksum = node['asterisk']['source']['checksum']
@@ -44,6 +45,7 @@ end
 bash "install_asterisk" do
   user "root"
   cwd File.dirname(source_path)
+  environment 'PKG_CONFIG_PATH' => pkg_config_path
   code <<-EOH
     tar zxf #{source_path}
     cd #{'certified-' if certified}asterisk-#{version =~ /(\d*)-current/ ? "#{$1}.*" : version}
