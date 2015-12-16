@@ -1,5 +1,5 @@
-name             'asterisk'
-maintainer       'Mojo Lingo'
+name             'asterisk-cookbook'
+maintainer       'Goodpatch, Inc'
 maintainer_email 'ops@mojolingo.com'
 license          'Apache 2.0'
 description      'Installs/Configures Asterisk'
