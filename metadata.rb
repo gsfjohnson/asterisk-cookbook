@@ -6,7 +6,7 @@ description      'Installs/Configures Asterisk'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.1.1'
 
-recipe 'asterisk', 'Install Asterisk and configure'
+recipe 'asterisk-cookbook', 'Install Asterisk and configure'
 recipe 'asterisk::unimrcp', 'Install Asterisk UniMRCP plugin and configure'
 
 depends 'apt', '~> 2.2'
