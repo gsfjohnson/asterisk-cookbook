@@ -1,4 +1,5 @@
 # develop
+  * Enable installation of Certified Asterisk.
 
 # 1.1.1
   * Attribute typo in template
