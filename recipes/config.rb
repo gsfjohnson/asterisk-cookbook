@@ -4,7 +4,13 @@
 #
 
 def data_bag_items(bag_name)
-  data_bag(bag_name).map { |id| data_bag_item bag_name, id }
+  begin
+    data_bag(bag_name).map do |id|
+      return data_bag_item bag_name, id
+    end
+  rescue Net::HTTPServerException
+    return {}
+  end
 end
 
 users = data_bag_items(:asterisk_users)
