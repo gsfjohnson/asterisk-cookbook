@@ -1,3 +1,8 @@
+#
+# Cookbook Name:: asterisk
+# Attributes:: manager
+#
+
 # [general]
 default['asterisk']['manager']['enabled']         = 'yes'
 default['asterisk']['manager']['port']            = 5038

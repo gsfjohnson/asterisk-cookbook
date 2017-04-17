@@ -1,3 +1,9 @@
+#
+# Cookbook Name:: asterisk
+# Recipe:: init
+#
+
+
 defaults_path = case node['platform_family']
 when 'debian'
   '/etc/default/asterisk'

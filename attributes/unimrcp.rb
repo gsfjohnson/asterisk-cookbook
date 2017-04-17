@@ -1,3 +1,8 @@
+#
+# Cookbook Name:: asterisk
+# Attributes:: unimrcp
+#
+
 default['asterisk']['unimrcp']['version'] = '1.1.0'
 default['asterisk']['unimrcp']['packages'] = %w{pkg-config build-essential}
 default['asterisk']['unimrcp']['install_dir'] = '/usr/local/unimrcp'

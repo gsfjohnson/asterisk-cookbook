@@ -1,3 +1,8 @@
+#
+# Cookbook Name:: asterisk
+# Attributes:: default
+#
+
 default['asterisk']['install_method'] = 'source'
 
 # Ownership / run-as user

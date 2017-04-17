@@ -1,3 +1,8 @@
+#
+# Cookbook Name:: asterisk
+# Attributes:: sip
+#
+
 default['asterisk']['sip']['context']              = 'default'
 default['asterisk']['sip']['allowguest']           = 'yes'
 default['asterisk']['sip']['allowoverlap']         = 'no'

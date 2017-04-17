@@ -1,3 +1,9 @@
+#
+# Cookbook Name:: asterisk
+# Recipe:: default
+#
+
+
 asterisk_user = node['asterisk']['user']
 asterisk_group = node['asterisk']['group']
 

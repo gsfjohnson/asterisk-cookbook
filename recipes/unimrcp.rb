@@ -1,3 +1,9 @@
+#
+# Cookbook Name:: asterisk
+# Recipe:: unimrcp
+#
+
+
 include_recipe "unimrcp"
 
 directory "/var/lib/asterisk/documentation/thirdparty" do

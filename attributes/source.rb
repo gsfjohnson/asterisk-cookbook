@@ -1,4 +1,10 @@
-default['asterisk']['source']['packages'] = case platform_family
+#
+# Cookbook Name:: asterisk
+# Attributes:: source
+#
+
+
+default['asterisk']['source']['packages'] = case node['platform_family']
 when 'debian'
   %w{libssl-dev libcurl4-openssl-dev libjansson-dev libncurses5-dev libnewt-dev libxml2-dev libsqlite3-dev libsrtp0-dev uuid-dev sox}
 when 'rhel'

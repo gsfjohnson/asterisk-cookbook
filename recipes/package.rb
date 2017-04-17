@@ -1,3 +1,9 @@
+#
+# Cookbook Name:: asterisk
+# Recipe:: package
+#
+
+
 case node['platform_family']
 when 'debian'
   if node['asterisk']['package']['repo']['enable']
@@ -9,6 +15,7 @@ when 'debian'
       key node['asterisk']['package']['repo']['key']
     end
   end
+
 when 'rhel'
   if node['asterisk']['package']['repo']['enable']
     node['asterisk']['package']['repo']['urls'].each do |name, url|
@@ -22,6 +29,10 @@ when 'rhel'
   else
     include_recipe 'yum-epel'
   end
+
+else
+  fail "platform_family not supported: #{node['platform_family']}"
+
 end
 
 node['asterisk']['package']['names'].each do |pkg|
