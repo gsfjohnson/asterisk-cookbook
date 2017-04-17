@@ -1,17 +1,14 @@
 ---
 driver:
+  require_chef_omnibus: 12.16.42
   name: vagrant
-  customize:
-    memory: 1024
 
 provisioner:
   name: chef_solo
 
 platforms:
-  - name: centos-6.5
-    run_list: asterisk-test
-  - name: fedora-19
-    run_list: asterisk-test
+  - name: centos-6.8
+  - name: centos-7.3
   - name: fedora-20
     run_list: asterisk-test
   - name: ubuntu-14.04
@@ -25,41 +22,42 @@ platforms:
 
 suites:
 - name: package-native
-  run_list: ['recipe[asterisk]']
-  attributes: {
-    asterisk: {
+  run_list:
+    - asterisk
+  attributes:
+    asterisk:
       install_method: 'package'
-    }
-  }
 
 - name: package-digium
-  run_list: ['recipe[asterisk]']
-  attributes: {
-    asterisk: {
-      install_method: 'package',
-      package: {
-        repo: {
+  excludes:
+    - fedora-19
+    - fedora-20
+  run_list:
+    - asterisk
+  attributes:
+    asterisk:
+      install_method: 'package'
+      package:
+        repo:
           enable: true
-        }
-      }
-    }
-  }
-  excludes: ["fedora-19", "fedora-20"]
 
 - name: source
-  run_list: ['recipe[asterisk]']
-  attributes: {
+  run_list:
+    - asterisk
+  attributes:
     asterisk: {}
-  }
+
 - name: unimrcp-pkg
-  run_list: ['recipe[asterisk]', 'recipe[asterisk::unimrcp]']
-  attributes: {
-    asterisk: {
+  run_list:
+    - asterisk
+    - asterisk::unimrcp
+  attributes:
+    asterisk:
       install_method: 'package'
-    }
-  }
+
 - name: unimrcp-src
-  run_list: ['recipe[asterisk]', 'recipe[asterisk::unimrcp]']
-  attributes: {
+  run_list:
+    - asterisk
+    - asterisk::unimrcp
+  attributes:
     asterisk: {}
-  }
