@@ -56,12 +56,12 @@ bash "install_asterisk p1" do
     cd #{'certified-' if certified}asterisk-#{version =~ /(\d*)-current/ ? "#{$1}.*" : version}
     ./contrib/scripts/install_prereq install
   EOH
-  not_if "test -f #{node['asterisk']['prefix']['bin']}/sbin/asterisk"
+  not_if "test -f #{node['asterisk'][:prefix_bin]}/sbin/asterisk"
 end
 
 execute 'configure with pkg-config' do
-    command "su root -l -c 'PKG_CONFIG_PATH=#{pkg_config_path} ./configure --prefix=#{node['asterisk']['prefix']['bin']} --sysconfdir=#{node['asterisk']['prefix']['conf']} --localstatedir=#{node['asterisk']['prefix']['state']}'"
-    not_if "test -f #{node['asterisk']['prefix']['bin']}/sbin/asterisk"
+    command "su root -l -c 'PKG_CONFIG_PATH=#{pkg_config_path} ./configure --prefix=#{node['asterisk'][:prefix_bin]} --sysconfdir=#{node['asterisk'][:prefix_conf]} --localstatedir=#{node['asterisk'][:prefix_state]}'"
+    not_if "test -f #{node['asterisk'][:prefix_bin]}/sbin/asterisk"
 end
 
 bash "install_asterisk p2" do
@@ -74,6 +74,6 @@ bash "install_asterisk p2" do
     #{'make samples' if node['asterisk']['source']['install_samples']}
     ldconfig
   EOH
-  not_if "test -f #{node['asterisk']['prefix']['bin']}/sbin/asterisk"
+  not_if "test -f #{node['asterisk'][:prefix_bin]}/sbin/asterisk"
   notifies :reload, 'service[asterisk]'
 end

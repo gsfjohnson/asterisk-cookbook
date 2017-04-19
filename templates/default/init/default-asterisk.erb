@@ -3,9 +3,9 @@
 
 # Startup configuration for the Asterisk daemon
 
-DAEMON=<%= node['asterisk']['prefix']['bin'] %>/sbin/asterisk
-ASTVARRUNDIR=<%= node['asterisk']['prefix']['state'] %>/run/asterisk
-ASTETCDIR=<%= node['asterisk']['prefix']['conf'] %>/asterisk
+DAEMON=<%= node['asterisk'][:prefix_bin] %>/sbin/asterisk
+ASTVARRUNDIR=<%= node['asterisk'][:prefix_state] %>/run/asterisk
+ASTETCDIR=<%= node['asterisk'][:prefix_conf] %>/asterisk
 
 # Uncomment the following and set them to the user/groups that you
 # want to run Asterisk as. NOTE: this requires substantial work to
@@ -21,7 +21,7 @@ COLOR=yes
 
 # If you want Asterisk to run with a non-default configuration file,
 # uncomment the following option, and set the value appropriately.
-ALTCONF="<%= node['asterisk']['prefix']['conf'] %>/asterisk/asterisk.conf"
+ALTCONF="<%= node['asterisk'][:prefix_conf] %>/asterisk/asterisk.conf"
 
 # In the case of a crash, Asterisk may create a core file.  Uncomment
 # if you want this behavior.

@@ -23,7 +23,7 @@ bash "install_unimrcp_asterisk_modules" do
   not_if 'asterisk -x "module show like unimrcp" | grep "2 modules loaded"'
 end
 
-template "#{node['asterisk']['prefix']['conf']}/asterisk/mrcp.conf" do
+template "#{node['asterisk'][:prefix_conf]}/asterisk/mrcp.conf" do
   source "mrcp.conf.erb"
   mode 0644
   notifies :reload, resources('service[asterisk]')

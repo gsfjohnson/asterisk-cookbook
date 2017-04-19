@@ -25,7 +25,7 @@ service "asterisk" do
 end
 
 %w(lib/asterisk spool/asterisk run/asterisk log/asterisk).each do |subdir|
-  path = "#{node['asterisk']['prefix']['state']}/#{subdir}"
+  path = "#{node['asterisk'][:prefix_state]}/#{subdir}"
 
   directory path do
     recursive true

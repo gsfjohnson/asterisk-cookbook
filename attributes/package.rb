@@ -6,9 +6,9 @@
 
 default['asterisk']['package']['names'] = case node['platform_family']
 when 'debian'
-  %w(asterisk asterisk-dev)
+  %w( asterisk )
 when 'rhel', 'fedora'
-  %w(asterisk asterisk-devel sox)
+  %w( asterisk sox )
 end
 
 case node['platform_family']
